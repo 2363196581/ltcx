@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:jms="http://www.springframework.org/schema/jms" xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:beans="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/cache 
+	http://www.springframework.org/schema/cache/spring-cache.xsd
+	 http://www.springframework.org/schema/util
+	  http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/data/jpa
+       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+ http://www.springframework.org/schema/mvc
+  http://www.springframework.org/schema/mvc/spring-mvc.xsd
+  http://www.springframework.org/schema/jms
+  http://www.springframework.org/schema/jms/spring-jms.xsd
+  http://activemq.apache.org/schema/core
+    http://activemq.apache.org/schema/core/activemq-core.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd"
+
+
+       default-lazy-init="true">
+    <bean class="com.connxun.util.spring.SpringContextHolder"
+          lazy-init="false"/>
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com"/><!--
+		spring从该包下面自动扫描组件 -->
+
+    <!-- spring从properties里面读取jdbc配置文件 -->
+    <context:property-placeholder
+            ignore-unresolvable="true" location="classpath:/application.properties"/>
+    <mvc:annotation-driven/>
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="${jdbc.initialSize}"/>
+        <property name="minIdle" value="1"/>
+        <property name="maxActive" value="${jdbc.maxActive}"/>
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="60000"/>
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+        <property name="validationQuery" value="SELECT 'x'"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <!-- <property name="removeAbandoned" value="true" /> <property name="removeAbandonedTimeout"
+            value="1800" /> -->
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 ,mysql不需要，oracle才用到 <property name="poolPreparedStatements"
+            value="false" /> <property name="maxPoolPreparedStatementPerConnectionSize"
+            value="20" /> -->
+
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="stat"/>
+        <property name="proxyFilters">
+            <list>
+                <ref bean="logFilter"/>
+            </list>
+        </property>
+    </bean>
+    <!--JPA配置-->
+    <jpa:repositories base-package="com.connxun.*.repositories"
+                      transaction-manager-ref="transactionManager"
+                      entity-manager-factory-ref="entityManagerFactory"/>
+    <!-- 实体管理器 -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.connxun.app.entity,com.connxun.*.entity"/>
+        <property name="persistenceProvider">
+            <bean class="org.hibernate.jpa.HibernatePersistenceProvider"/>
+        </property>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="generateDdl" value="false"/>
+                <property name="database" value="MYSQL"/>
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQL57InnoDBDialect"/>
+                <property name="showSql" value="true"/>
+            </bean>
+        </property>
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+        </property>
+        <property name="jpaPropertyMap">
+            <util:map>
+                <entry key="hibernate.query.substitutions" value="true 1, false 0"/>
+                <entry key="hibernate.default_batch_fetch_size" value="16"/>
+                <entry key="hibernate.max_fetch_depth" value="2"/>
+                <entry key="hibernate.generate_statistics" value="true"/>
+                <entry key="hibernate.bytecode.use_reflection_optimizer" value="true"/>
+                <entry key="hibernate.cache.use_second_level_cache" value="false"/>
+                <entry key="hibernate.cache.use_query_cache" value="false"/>
+            </util:map>
+        </property>
+    </bean>
+
+    <bean id="logFilter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
+        <property name="statementExecutableSqlLogEnable" value="true"/>
+    </bean>
+
+
+    <!-- 注入jdbcTemplate -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 利用AOP配置事务处理 -->
+    <!--   <bean id="transactionManager"
+             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+           <property name="dataSource" ref="dataSource">
+           </property>
+       </bean>-->
+    <bean id="transactionManager"
+          class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+        </property>
+    </bean>
+
+
+    <aop:config>
+        <aop:pointcut id="bussinessService" expression="execution(public * com.*.service.*.*(..))"/>
+
+        <aop:advisor pointcut-ref="bussinessService" advice-ref="txAdvice"/>
+    </aop:config>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="import*" propagation="REQUIRED"/>
+            <tx:method name="*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--添加声明，为Spring容器中那些匹配@AspectJ切面的Bean创建代理，其中的proxy-target-class="true"
+        表示使用CGLib动态代理技术织入增强 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!-- 日志切面 <bean id="logAspect" class="com.common.aop.LogAspect"
+        /> -->
+    <!--dao和service异常切面 -->
+    <bean id="daoExceptionAspect" class="com.connxun.config.aspect.DaoExceptionAspect"/>
+    <bean id="serviceExceptionAspect" class="com.connxun.config.aspect.ServiceExceptionAspect"/>
+
+    <!--EhCache缓存配置 -->
+    <bean id="cacheManagerFactory"
+          class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:/ehcache.xml"/>
+        <!--<property name="configLocation" value="classpath:conf/ehcache.xml"/>-->
+    </bean>
+    <cache:annotation-driven cache-manager="cacheManager"/>
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="cacheManagerFactory"/>
+    </bean>
+
+    <bean id="druid-stat-interceptor"
+          class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
+    </bean>
+
+    <bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut"
+          scope="prototype">
+        <property name="patterns">
+            <list>
+                <value>com.connxun.*.service.*</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--<aop:config>-->
+    <!--<aop:advisor advice-ref="druid-stat-interceptor"-->
+    <!--pointcut-ref="druid-stat-pointcut"/>-->
+    <!--</aop:config>-->
+    <!--自动生成器内容模版 freemarker config -->
+    <bean id="freeMarkerConfigurer"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="classpath:/codeModel/"/>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="template_update_delay">0</prop>
+                <prop key="default_encoding">UTF-8</prop>
+                <prop key="locale">zh_CN</prop>
+            </props>
+        </property>
+        <property name="servletContext" ref="servletContext"/>
+    </bean>
+
+    <!-- 整合Redis -->
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <!--最大空闲连接数-->
+        <property name="maxIdle" value="${redis.maxIdle}" />
+        <property name="testOnBorrow" value="${redis.testOnBorrow}" />
+
+    </bean>
+
+    <bean id="connectionFactory"
+          class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+          p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}"
+          p:pool-config-ref="poolConfig">
+        <property name="poolConfig" ref="poolConfig"/>
+    </bean>
+
+    <bean id="redisTemplate" p:defaultSerializer-ref="stringRedisSerializer"
+          class="org.springframework.data.redis.core.StringRedisTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+    </bean>
+
+    <bean id="stringRedisSerializer"
+          class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+    <!--设置公共参数 -->
+    <bean id="pubConfig" class="com.connxun.util.config.PubConfig">
+        <property name="imageServer" value="${imageServer}"/>
+        <property name="imageUploadPath" value="${imageUploadPath}"/>
+        <property name="staticServer" value="${staticServer}"/>
+        <property name="dynamicServer" value="${dynamicServer}"/>
+        <property name="uploadServer" value="${uploadServer}"/>
+    </bean>
+
+    <!--线程池配置-->
+    <bean id="threadPoolTaskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <!-- 线程池维护线程的最少数量 -->
+        <property name="corePoolSize" value="1" />
+        <!-- 允许的空闲时间 -->
+        <property name="keepAliveSeconds" value="200" />
+        <!-- 线程池维护线程的最大数量 -->
+        <property name="maxPoolSize" value="5" />
+        <!-- 缓存队列 -->
+        <property name="queueCapacity" value="20" />
+        <!-- 对拒绝task的处理策略 -->
+        <property name="rejectedExecutionHandler">
+            <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+        </property>
+    </bean>
+
+    <!-- swagger 配置-->
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
+    <!-- swagger拦截器放行 -->
+    <!--<mvc:exclude-mapping path="/swagger*/**"></mvc:exclude-mapping>-->
+    <!--<mvc:exclude-mapping path="/v2/**"></mvc:exclude-mapping>-->
+    <!--<mvc:exclude-mapping path="/webjars/**"></mvc:exclude-mapping>-->
+
+    <!-- 初始化执行任务 -->
+    <task:annotation-driven />
+
+    <!-- 使用qq邮箱 -->
+    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host}" />
+        <property name="port" value="${mail.port}"/>
+        <property name="username" value="${mail.username}"/>
+        <!-- qq邮箱的授权码，如果是企业邮箱，则使用登录密码 -->
+        <property name="password" value="${mail.password}"/>
+        <property name="javaMailProperties">
+            <props >
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--配置邮箱的发送者以及标题-->
+    <bean id="simpleMailMessage" class="org.springframework.mail.SimpleMailMessage">
+        <property name="from" value="${mail.from}" />
+        <property name="subject" value="${mail.subject}" />
+    </bean>
+
+
+    <!--&lt;!&ndash;active消息队列配置&ndash;&gt;-->
+    <!--<amq:connectionFactory  id="amqConnectionFactory"-->
+                            <!--brokerURL="tcp://127.0.0.1:61616"-->
+                            <!--userName="admin"-->
+                            <!--password="admin"-->
+                            <!--useAsyncSend="false"/>-->
+
+    <!--&lt;!&ndash; 配置JMS连接工长-->
+    <!--SingleConnectionFactory CachingConnectionFactory PooledConnectionFactory&ndash;&gt;-->
+    <!--<bean id="targetConnectionFactory"-->
+          <!--class="org.springframework.jms.connection.CachingConnectionFactory">-->
+        <!--<constructor-arg ref="amqConnectionFactory" />-->
+        <!--<property name="sessionCacheSize" value="100" />-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; 定义代金券消息队列（Queue） &ndash;&gt;-->
+    <!--<bean id="demoQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">-->
+        <!--&lt;!&ndash; 设置消息队列的名字 &ndash;&gt;-->
+        <!--<constructor-arg index="0" value="LwBizMsgQueue" />-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; 定义第二个消息队列（Queue） &ndash;&gt;-->
+    <!--<bean id="secondQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">-->
+        <!--&lt;!&ndash; 设置消息队列的名字 &ndash;&gt;-->
+        <!--<constructor-arg index="0" value="LwVoucherMsgQueue"/>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; 配置JMS模板（Queue），Spring提供的JMS工具类，它发送、接收消息。 &ndash;&gt;-->
+    <!--<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">-->
+        <!--<property name="connectionFactory" ref="targetConnectionFactory" />-->
+        <!--<property name="defaultDestination" ref="demoQueueDestination" />-->
+        <!--<property name="deliveryMode" value="1"></property>-->
+        <!--&lt;!&ndash; 消息不持久化 &ndash;&gt;-->
+        <!--<property name="explicitQosEnabled" value="true"></property>-->
+        <!--&lt;!&ndash;由于receiver方法是同步的，所以我们在这里对接收设置超时时间&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="receiveTimeout" value="10000" />&ndash;&gt;-->
+        <!--&lt;!&ndash; true是topic，false是queue，默认是false，此处显示写出false &ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="pubSubDomain" value="false" />&ndash;&gt;-->
+    <!--</bean>-->
+
+    <!--<bean id="SecondTemplate" class="org.springframework.jms.core.JmsTemplate">-->
+        <!--<property name="connectionFactory" ref="targetConnectionFactory" />-->
+        <!--<property name="defaultDestination" ref="secondQueueDestination" />-->
+        <!--<property name="deliveryMode" value="1"></property>-->
+        <!--&lt;!&ndash; 消息不持久化 &ndash;&gt;-->
+        <!--<property name="explicitQosEnabled" value="true"></property>-->
+        <!--&lt;!&ndash;<property name="receiveTimeout" value="10000" />&ndash;&gt;-->
+        <!--&lt;!&ndash; true是topic，false是queue，默认是false，此处显示写出false &ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="pubSubDomain" value="false" />&ndash;&gt;-->
+    <!--</bean>-->
+
+
+    <!--&lt;!&ndash; 配置消息队列监听者（Queue） &ndash;&gt;-->
+    <!--<bean id="queueMessageListener" class="com.util.activeMQ.QueueMessageListener" />-->
+    <!--<bean id="secondMessageListener" class="com.util.activeMQ.VoucherMessageListener" />-->
+
+    <!--&lt;!&ndash; 显示注入消息监听容器（Queue），配置连接工厂，监听的目标是demoQueueDestination，监听器是上面定义的监听器 &ndash;&gt;-->
+    <!--<bean id="queueListenerContainer"-->
+          <!--class="org.springframework.jms.listener.DefaultMessageListenerContainer">-->
+        <!--<property name="connectionFactory" ref="targetConnectionFactory" />-->
+        <!--<property name="destination" ref="demoQueueDestination" />-->
+        <!--<property name="messageListener" ref="queueMessageListener" />-->
+    <!--</bean>-->
+
+    <!--<bean id="secondListenerContainer"-->
+          <!--class="org.springframework.jms.listener.DefaultMessageListenerContainer">-->
+        <!--<property name="connectionFactory" ref="targetConnectionFactory" />-->
+        <!--<property name="destination" ref="secondQueueDestination" />-->
+        <!--<property name="messageListener" ref="secondMessageListener" />-->
+        <!--&lt;!&ndash;这里注意:如果不开启事务，消息在异常的情况下是不会重试的&ndash;&gt;-->
+        <!--<property name="sessionTransacted" value="true"/>-->
+        <!--<property name="concurrentConsumers" value="1"/>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; 监听容器统一写法 &ndash;&gt;-->
+    <!--&lt;!&ndash;<jms:listener-container destination-type="queue" container-type="default"&ndash;&gt;-->
+    <!--&lt;!&ndash;connection-factory="targetConnectionFactory" concurrency="50" task-executor="threadPoolTaskExecutor"&ndash;&gt;-->
+    <!--&lt;!&ndash;acknowledge="auto">&ndash;&gt;-->
+    <!--&lt;!&ndash;<jms:listener destination="demoQueueDestination" ref="queueMessageListener" />&ndash;&gt;-->
+    <!--&lt;!&ndash;<jms:listener destination="secondQueueDestination" ref="secondMessageListener" />&ndash;&gt;-->
+    <!--&lt;!&ndash;</jms:listener-container>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;5:扫描websocket相关的bean &ndash;&gt;-->
+    <!--<context:component-scan base-package="com.util.websocket"/>-->
+
+</beans>

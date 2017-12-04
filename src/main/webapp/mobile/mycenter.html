@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>基本资料</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-us-bar-style" content="#ff0033">
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/register.css"/>
+		
+		<script src="js/commin.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<header>
+			<a href="mine.html" class="fh"><img src="img/fh.png"/></a>
+			基本资料
+			 <a href="javascript:;"  class="more" onclick="upp()">修改</a>
+		</header>
+		
+		<!-- 顶部结束 -->
+		
+	
+		<form action="" id="form-add" method="post">
+			<input type="hidden" value="" name="id" id="id" disabled="disabled" style="background-color: white"/>
+            <input type="hidden" value="" name="userNo" id="userNo" disabled="disabled" style="background-color: white"/>
+            <input type="hidden" value="" name="mobile" id="mobile" disabled="disabled" style="background-color: white"/>
+			<div class="main">
+				<ul>
+					<li>登录用户名：</li>
+					<li><input type="text" name="username" id="username" value="" disabled="disabled" style="background-color: white"/></li>
+				</ul>
+				<ul>
+					<li>昵称：</li>
+					<li><input type="text" name="nickname" id="nickname" value="" disabled="disabled" style="background-color: white"/></li>
+				</ul>
+				<ul>
+					<li>真实姓名：</li>
+					<li><input type="text" name="realname" id="realname" value="" disabled="disabled" style="background-color: white"/></li>
+				</ul>
+				<ul>
+					<li>邮箱：</li>
+					<li><input type="text" name="email" id="email" value="" disabled="disabled" style="background-color: white"/></li>
+				</ul>
+				<ul>
+					<li>性别：</li>
+					<li>
+						<select class="select" name="sex" id="sex" size="1" disabled="disabled" >
+							<option value="0">男</option>
+							<option value="1">女</option>
+						</select>
+					</li>
+				</ul>
+			</div>
+			<input type="submit" value="修改" class="sub" style="display: none"/>
+		</form>
+	</body>
+	<script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/layer/2.4/layer.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/jquery.validation/1.14.0/jquery.validate.js"></script> 
+	<script type="text/javascript" src="js/jquery.validation/1.14.0/validate-methods.js"></script> 
+	<script type="text/javascript" src="js/jquery.validation/1.14.0/messages_zh.js"></script>
+	<script type="text/javascript">
+		$(function(){
+		    $.get("/jzpdzb/mobile/user/findUser", null, function (response) {
+		    	console.log(response);
+				if(response.resultCode==200&&response.data!=null){
+//					id  userNo  username nickname  realname  password   mobile  email    sex   	
+					var data=response.data;
+					$("#id").val(data.id);
+					$("#userNo").val(data.userNo);
+					$("#username").val(data.username);
+					$("#nickname").val(data.nickname);
+					$("#realname").val(data.realname);
+					$("#mobile").val(data.mobile);
+					$("#email").val(data.email);
+					$("#sex [value='"+data.sex+"']").attr("selected",true);
+				}else{
+					top.location.href ="login.html";
+				}
+			}); 
+		});
+		function upp(){
+			$(".sub").css("display","block");
+			$("input").removeAttr("disabled");
+			$("select").removeAttr("disabled");
+		}
+		$.ajaxSetup ({
+		    cache: false //close AJAX cache 
+		}); 
+		$("#form-add").validate({
+			rules:{//username nickname  realname  password   mobile  email    sex  
+				username:{
+					required:true,
+				},
+				nickname:{
+					required:true,
+				},
+				realname:{
+					required:true,
+				},
+				email:{
+					required:true,
+					email:true,
+				}
+			},
+			onkeyup:false,
+			focusCleanup:true,
+			success:"valid",
+			submitHandler:function(form){
+	        	var d =$(form).serialize();
+	        	console.log(d);
+	            $.post("/jzpdzb/mobile/user/update", d, function (data) {
+	                if (data.resultCode == 200) {
+	                    layer.msg('修改成功！', {icon: 1, time: 1000},function(){
+	                    	top.location.href ="mycenter.html";
+	                    });
+	                } else {
+	                    layer.msg('修改失败!', {icon: 1, time: 1000});
+	                }
+	            });
+			}
+		});
+	</script>
+</html>

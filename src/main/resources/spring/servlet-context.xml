@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:/application.properties"/>
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean id="jacksonMessageConverter"
+                  class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- Handles HTTP GET requests for /resources/** by efficiently serving
+        up static resources in the ${webappRoot}/resources directory -->
+    <mvc:resources mapping="/assets/**" location="/assets/"/>
+
+    <!--<mvc:resources mapping="/resources/**" location="WEB-INF/resources/"/>-->
+    <bean id="viewResolver" abstract="true">
+        <property name="attributes">
+            <props>
+                <prop key="versionNo">${versionNo}</prop>
+                <prop key="jsPath">${jsPath}</prop>
+                <prop key="commonJsPath">${commonJsPath}</prop>
+                <prop key="minJs">${minJs}</prop>
+                <prop key="imageServer">${imageServer}</prop>
+                <prop key="staticServer">${staticServer}</prop>
+                <prop key="dynamicServer">${dynamicServer}</prop>
+                <prop key="imageUploadPath">${imageUploadPath}</prop>
+                <prop key="uploadServer">${uploadServer}</prop>
+
+                <prop key="webTitle">家政直播控制台</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- register DefaultAnnotationHandlerMapping and AnnotationMethodHandlerAdapter
+        instance <mvc:annotation-driven /> -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+    </bean>
+
+    <!-- 支持上传文件 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+    <!-- Resolves views selected for rendering by @Controllers to .jsp resources
+        in the /WEB-INF/views directory -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" parent="viewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->
+    <!--<mvc:view-controller path="/" view-name="forward:/mobile/index.html" />-->
+
+    <!-- this config must be last -->
+    <mvc:default-servlet-handler/>
+    <context:component-scan base-package="com.connxun.*.controller">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--aspect拦截controller-->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <bean id="controllerExceptionAspect" class="com.connxun.config.aspect.ControllerExceptionAspect"/>
+
+    <!--    全局异常配置 start-->
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.Exception">exception</prop>
+                <prop key="java.lang.Throwable">exception</prop>
+            </props>
+        </property>
+        <property name="statusCodes">
+            <props>
+                <prop key="exception">500</prop>
+                <prop key="exception">404</prop>
+            </props>
+        </property>
+        <property name="warnLogCategory" value="WARN"/>
+        <property name="defaultErrorView" value="exception"/>
+        <property name="defaultStatusCode" value="500"/>
+    </bean>
+    <!-- 全局异常配置 end -->
+
+    <mvc:interceptors>
+        <!-- 后端拦截器——是否登录 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/portal/*/*/*"/>
+            <bean class="com.connxun.config.interceptor.CheckLoginInterceptor"/>
+        </mvc:interceptor>
+        <!-- 前端拦截器——是否为授权用户 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/cx/user/*/*"/>
+            <bean class="com.connxun.config.interceptor.AppLoginInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/lw/user/*"/>
+            <bean class="com.connxun.config.interceptor.AppLoginInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/lw/courseChapter/inRoom.do"/>
+            <bean class="com.connxun.config.interceptor.AppLoginInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/lw/courseChapter/inRecord.do"/>
+            <bean class="com.connxun.config.interceptor.AppLoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+</beans>

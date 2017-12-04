@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>写评论</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-us-bar-style" content="#ff0033">
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/ZeptoEmoji.css"/>
+		<link rel="stylesheet" type="text/css" href="css/comment.css"/>
+		
+		<!-- jQuery 对zepto有影响 -->
+		<!--<script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>-->
+		
+		
+		<script src="js/commin.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/ZeptoEmoji.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<header>
+			<a href="javascript:history.go(-1);" class="fh"><img src="img/fh.png"/>返回</a>
+			<p>58同城房地产战略升级111111111111111111</p>
+			<a href="mine.html" class="more">
+				<span></span>
+				<span></span>
+				<span></span>
+			</a>
+		</header>
+		
+		<!-- 顶部结束 -->
+		
+		
+		<div class="tip">
+			评论将对所有人可见
+		</div>
+		
+		<div class="text">
+			<textarea name="" placeholder="请输入您对主播、节目的评价" id="emojiInput"></textarea>
+			<span class="phiz"><img src="img/phiz2.jpg"/></span>
+		</div>
+		
+		
+		<div class="emoji-mod" data-textmod="emoji" id="emojiContainer"></div>
+		
+		<input type="submit" name="" id="" value="提交" class="sub"/>
+		
+	</body>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		$.get("/jzpdzb/mobile/user/findUser", null, function (result) {
+			if (result.resultCode == 200) {
+		    } else {
+		        top.location.href = "login.html";
+		    }
+		});
+	</script>
+</html>

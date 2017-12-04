@@ -1,0 +1,195 @@
+/*Start_****容器样式*****/
+* {
+    margin: 0;
+    padding: 0;
+    /*DEBUG MODE */
+    /*border: 1px solid red;*/
+}
+
+body {
+    background: #EEEEEE;
+    font-family: "微软雅黑", Helvetica, Arial, sans-serif;
+    font-size: 150%;
+}
+
+html, body {
+    height: 100%;
+}
+
+.container {
+    height: 1200px;
+    border: 1px solid #000000;
+    margin: 0 auto;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/***************(排版辅助class)****************/
+.pull-center {
+    margin: 0 auto;
+}
+
+.let-center {
+    text-align: center;
+}
+
+.let-left {
+    text-align: left;
+}
+
+.let-right {
+    text-align: right;
+}
+/***************(排版辅助class)****************/
+
+
+/**************(字体)*****************/
+.product-name-font {
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: "微软雅黑 Light", Helvetica, Arial, sans-serif;
+}
+
+.product-info-font {
+    color: #6D6D6D;
+}
+/*******************************/
+
+
+/***********（ActionBar）*******************/
+.actbar-title-font {
+    font-size: 1.3em;
+}
+
+.actbar-header {
+    /*width: 480px;*/
+    height: 100px;
+    background: #00bbee;
+    color: #ffffff;
+    /*border: 1px solid red;*/
+    /*margin: 0 auto;*/
+}
+
+table.actbar-table-title-group {
+    /*width: 450px; */
+    /*width: 480px;*/
+    height: 100px;
+    /*header is 130 */
+}
+
+
+table.actbar-tab-title-group {
+    /*width: 450px; */
+    /*width: 480px;*/
+    height: 100px;
+    /*header is 130 */
+}
+
+/*******************************/
+
+
+
+/****Start_搜索框******/
+.search-group {
+    /*width: 480px;*/
+    height: 65px;
+    margin-top: 5px;
+    border-bottom: 2px solid #00bbee;
+}
+
+input.search-input {
+    /*width: 442px;*/
+    width: 90%;
+    height: 60px;
+    float: left;
+
+}
+
+img.img-search-icon {
+    float: left;
+    margin-top: 9px
+}
+
+/****End_搜索框******/
+
+
+/*/卡片翻页*/
+.tab-card {
+    /*width: 480px;*/
+    height: 100px;
+    background: #00bbee;
+    color: #ffffff;
+    /*border: 1px solid red;*/
+    /*margin: 0 auto;*/
+}
+
+.tab-card-active {
+    background: #33B5E5;
+}
+/*/卡片翻页*/
+
+/**********(数据项)****************/
+
+.form-group {
+    height: auto;
+    margin-top: 15px;
+}
+
+/****************/
+.main-data {
+    /*width: 480px;*/
+    height: auto;
+}
+
+.item-data {
+    /*width: 480px;*/
+    width: 100%;
+    margin-top: 10px;
+}
+
+/******（line in table）*********/
+.hr-header-line {
+    display: inline-block;
+    /*width: 420px;*/
+    width: 90%;
+}
+/**************************/
+select.style01{
+    height: 60px;
+    width: 95%;
+}
+
+.btn{
+    height: 80px;
+    border: 0;
+    color: #ffffff;
+}
+
+
+/***********(font-siez test)***********/
+input{
+    font-size: 1.3em;
+}
+select{
+    font-size: 1.3em;
+}
+
+textarea{
+    font-size: 1.3em;
+}
+
+
+
+
+
+
+
+
+

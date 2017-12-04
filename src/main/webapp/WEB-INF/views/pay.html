@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form name="punchout_form" method="post"
+      action="https://openapi.alipay.com/gateway.do?charset=UTF-8&method=alipay.trade.wap.pay&sign=CnBb%2FxMSAtGUQALXxGnIsxkY82dkbsOYhMZNDcXc3Po1e1UfcJ8%2FhzxkeiGDfwlbeyb3TUzD0o%2B%2BuLUk8ashiAqhXuSw13aB96tPXsbjfoe8rwXEIGC0nixrelq00ONp%2FGgYq%2B%2BlU7QRK5Q2cPZi6mXEOaS2HxEzB5TBOqRL%2Fd%2FjyG6UcDi%2FregdwrHK7lusW0Bi78pMJCDdA9aICgTb5hJkdIRCukx1x33F1rnxqGEE%2FsdBQ0Xkbdg9YnUHLFmVfXBbs4didvzqA1TqF4aHxH85HociGA4JHFC6vIxD2IA6ajwDsxpyUHxpVki7IBZRHQuowOdZsMho6WQZA3hp9g%3D%3D&return_url=http%3A%2F%2Fdomain.com%2FCallBack%2Freturn_url.jsp&notify_url=http%3A%2F%2Fwww.932edu.net%2Flwgk%2Fpay%2Faliyun%2FCallBack%2Fnotify_url.do&version=1.0&app_id=+2016081001726633&sign_type=RSA2&timestamp=2017-08-23+19%3A00%3A50&alipay_sdk=alipay-sdk-java-dynamicVersionNo&format=json">
+    <input type="hidden" name="biz_content"
+           value="{    &quot;out_trade_no&quot;:订单号,    &quot;product_code&quot;:商品号,    &quot;total_amount&quot;:10,    &quot;subject&quot;:商品的名称,    &quot;body&quot;:商品的名称,    &quot;extend_params&quot;:{    &quot;sys_service_provider_id&quot;:&quot;2088421630965163&quot;    }  }">
+    <input type="submit" value="立即支付" style="display:none">
+</form>
+<script>document.forms[0].submit();</script>
+</body>
+</html>

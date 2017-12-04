@@ -1,0 +1,94 @@
+﻿@charset "utf-8";
+/*公共样式*/
+html{padding:0rem; margin:0rem;}
+body{margin:0rem; padding:0rem; background:#fff;color:black; font-family:"微软雅黑", "黑体";}
+div,form,img,ul,ol,li,dl,dt,dd{margin:0rem; padding:0rem; border:0rem;}
+h1,h2,h3,h4,h5,h6,form,p,span{margin:0rem;padding:0rem;}
+ul,li{list-style-type:none;}
+table,tr,td{word-break:break-all;}
+table{border-collapse:collapse; border-spacing:0;}
+th, td{vertical-align:middle;}
+img{border:0rem;display: block;}
+input{outline:none; font-family:"微软雅黑", "黑体"; padding:0rem; border:0rem; margin:0rem;}
+a{color:black; text-decoration:none; outline:none; cursor:pointer;}
+em{font-style:normal;}
+i{font-style:normal;}
+.fl{float:left;}
+.fr{float:right;}
+.mt-05{margin-top:0.05rem;}
+.mt-10{margin-top:0.1rem;}
+.mt-15{margin-top:0.15rem;}
+.mt-20{margin-top:0.2rem;}
+.mt-25{margin-top:0.25rem;}
+.mt-30{margin-top:0.3rem;}
+.mt-35{margin-top:0.35rem ;}
+.mt-50{margin-top:0.5rem;}
+.mr-5{margin-right:0.05rem; _display:inline;}
+.mr-10{margin-right:0.1rem; _display:inline;}
+.mr-15{margin-right:0.15rem; _display:inline;}
+.mr-20{margin-right:0.2rem; _display:inline;}
+.ml-5{margin-left:0.05rem; _display:inline;}
+.ml-10{margin-left:0.1rem; _display:inline;}
+.ml-15{margin-left:0.15rem; _display:inline;}
+.ml-20{margin-left:0.2rem; _display:inline;}
+.pt-10{padding-top:0.1rem;}
+.pb-10{padding-bottom:0.1rem;}
+.pb-20{padding-bottom:0.2rem;}
+.pl-10{padding-left:0.1rem;}
+.pr-10{padding-right:0.1rem;}
+.w-100bfb{width:100%; margin:0rem auto;}
+.w-100bfb01{width:100%; float:left;}
+.fn-12{font-size: 0.12rem;}
+.fn-14{font-size:0.14rem;}
+.fn-16{font-size:0.16rem;}
+.fn-18{font-size:0.18rem;}
+.fn-20{font-size:0.2rem;}
+.dy-dd{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.jzxx{text-align:center;}
+.del-x{text-decoration:line-through;}
+.clearfloat:after{display:block;clear:both;content:"";visibility:hidden;height:0;} 
+.clearfloat{zoom:1;} 
+
+
+header {
+  height: 0.88rem;
+  width: 100%;
+  background-color: #ff0033;
+  font-size: 0.34rem;
+  color: #fff;
+  text-align: center;
+  line-height: 0.88rem;
+  position: relative;
+}
+header .fh {
+  height: 100%;
+  position: absolute;
+  left: 0.25rem;
+  font-size: 0.22rem;
+  color: #fff;
+}
+header .fh img {
+  width: 0.2rem;
+  height: 100%;
+  float: left;
+  margin-right: 0.1rem;
+}
+header .more {
+  position: absolute;
+  right: 0.25rem;
+  top: 0;
+}
+header .more span {
+  width: 0.12rem;
+  height: 0.12rem;
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 50%;
+}
+header p{
+	width: 4rem;
+	font-size: 0.36rem;
+	margin: 0 auto;overflow:hidden; 
+	text-overflow:ellipsis; 
+	white-space:nowrap;
+}

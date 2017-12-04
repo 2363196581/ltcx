@@ -1,0 +1,102 @@
+.xgsj {
+  margin-top: 0.6rem;
+}
+.xgsj .tit {
+  font-size: 0.28rem;
+  color: #868c8b;
+  padding-left: 1.25rem;
+  background-position: 0.6rem center;
+  background-repeat: no-repeat;
+}
+.xgsj .btn {
+  width: 2.1rem;
+  height: 0.7rem;
+  background-color: #fd6a02;
+  font-size: 0.3rem;
+  text-align: center;
+  line-height: 0.7rem;
+  margin: 0.7rem auto 1.5rem;
+  border-radius: 0.1rem;
+}
+.xgsj .btn a {
+  color: #Fff;
+}
+.xgsj .phone {
+  background-image: url(../img/phone.png);
+  -webkit-background-size: 0.28rem 0.45rem;
+  height: 0.45rem;
+  line-height: 0.45rem;
+  background-size: 0.28rem 0.45rem;
+}
+.xgsj .suo {
+  height: 0.48rem;
+  line-height: 0.48rem;
+  background-image: url(../img/suo.png);
+  background-repeat: no-repeat;
+  -webkit-background-size: 0.42rem 0.48rem;
+  background-size: 0.42rem 0.48rem;
+}
+/* 修改手机号  */
+.xgsjh {
+  margin-top: 0.75rem;
+}
+.xgsjh .tit {
+  height: 0.9rem;
+  font-size: 0.28rem;
+  line-height: 0.9rem;
+  margin-left: 1.37rem;
+  color: #4b697c;
+}
+.xgsjh .xgsj {
+  width: 5.05rem;
+  height: 0.9rem;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+.xgsjh .xgsj .fsyz {
+  position: absolute;
+  right: 0.25rem;
+  top: 0.2rem;
+  background-color: #ff6200;
+  width: 1.5rem;
+  height: 0.5rem;
+  text-align: center;
+  line-height: 0.5rem;
+  font-size: 0.26rem;
+  color: #fff;
+  border-radius: 0.05rem;
+  padding: 0;
+}
+.xgsjh .xgsj input {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: #d4d4d4;
+  font-size: 0.28rem;
+  border-radius: 0.1rem;
+  padding-left: 1.2rem;
+  box-sizing: border-box;
+}
+.xgsjh .xgsj .sjhm {
+  background: #d4d4d4 url(../img/phone.png) no-repeat 0.3rem center;
+  -webkit-background-size: 0.28rem 0.45rem;
+  background-size: 0.28rem 0.45rem;
+  padding-left: 0.9rem;
+}
+.xgsjh .next {
+  width: 1.5rem;
+  height: 0.7rem;
+  margin: 0.4rem auto;
+  background-color: #666666;
+  font-size: 0.3rem;
+  text-align: center;
+  line-height: 0.7rem;
+  color: #fff;
+  border-radius: 0.15rem;
+}
+.xgsjh .finsh {
+  width: 2.4rem;
+  height: 0.75rem;
+  background-color: #ff6900;
+}

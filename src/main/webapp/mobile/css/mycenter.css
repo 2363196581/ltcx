@@ -1,0 +1,210 @@
+body {
+  overflow-x: hidden;
+}
+.users-list {
+  /* 头像部分 */
+}
+.users-list .avatar-box {
+  width: 100%;
+  padding: 0.4rem 0.5rem;
+  background: linear-gradient(45deg, #5e0bb3 20%, #8615bf 40%, #4776f1 100%);
+}
+.users-list .avatar-box .avatar {
+  float: left;
+  width: 1.02rem;
+  height: 1.02rem;
+  border-radius: 50%;
+  overflow: hidden ;
+}
+.users-list .avatar-box .avatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.users-list .avatar-box .user-name {
+  height: 1.02rem;
+  line-height: 1.02rem;
+  font-size: 0.3rem;
+  float: left;
+  margin-left: 0.15rem;
+  color: #fff;
+}
+.users-list .user-info {
+  font-size: 0.25rem;
+  color: #666;
+}
+.users-list .user-info li {
+  border-bottom: 1px solid #d1d1d1;
+  margin: 0 0.25rem;
+  height: 0.85rem;
+  line-height: 0.85rem;
+}
+.users-list .user-info li .fr {
+  height: 100%;
+  background: url(../img/arrow.jpg) no-repeat right center;
+  padding-right: 0.4rem;
+  -webkit-background-size: 0.17rem 0.29rem;
+  background-size: 0.17rem 0.29rem;
+}
+.users-list .user-info .first {
+  border-bottom: 1px solid #cacaca;
+}
+.users-list .user-info .first li:last-child {
+  border-bottom: none;
+}
+.users-list .user-info .second {
+  margin-top: 0.2rem;
+  border-top: 1px solid #ececec;
+  border-bottom: 1px solid #cacaca;
+}
+.users-list .user-info .second li:last-child {
+  border-bottom: none;
+}
+/* 用户信息  */
+.quit {
+  width: 5.6rem;
+  height: 0.7rem;
+  background-color: #ff2542;
+  font-size: 0.28rem;
+  color: #fff;
+  line-height: 0.7rem;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 2.5rem;
+}
+/* 退出登录 */
+.name-box {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+.name-box .cont {
+  width: 5.4rem;
+  height: 3.3rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -1.65rem;
+  margin-left: -2.7rem;
+  background-color: #fff;
+}
+.name-box .cont .head {
+  text-align: center;
+  overflow: hidden;
+}
+.name-box .cont .head .tit {
+  font-size: 0.29rem;
+  margin-top: 0.4rem;
+}
+.name-box .cont .head .desc {
+  font-size: 0.24rem;
+  margin-top: 0.25rem;
+}
+.name-box .cont .head .name {
+  width: 4.75rem;
+  height: 0.5rem;
+  box-sizing: border-box;
+  border: 1px solid #808080;
+  margin: 0 auto;
+  margin-top: 0.35rem;
+}
+.name-box .cont .head .name input {
+  width: 100%;
+  color: #cacacf;
+  height: 100%;
+  float: left;
+  padding-left: 0.1rem;
+  font-size: 0.24rem;
+  color: #d1d1d5;
+  box-sizing: border-box;
+}
+.name-box .cont .foot {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.name-box .cont .foot input {
+  width: 50%;
+  background-color: #fff;
+  float: left;
+  height: 0.88rem;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.3rem;
+  color: #ff7069;
+}
+.name-box .cont .foot .define {
+  border-left: 1px solid #e0e0e0;
+  color: #8a8b8b;
+}
+/* 修改昵称 */
+.sex-box {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+}
+.sex-box .cont {
+  width: 100%;
+  height: 5.2rem;
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+}
+.sex-box .cont .head {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  font-size: 0.28rem;
+  color: #ff5a52;
+  padding: 0 0.45rem;
+  background-color: #f7f7f7;
+}
+.sex-box .cont .main {
+  position: relative;
+  margin-top: 1.2rem;
+  font-size: 0.32rem;
+  color: #b8b8b8;
+  height: 1rem;
+}
+.sex-box .cont .main .active {
+  font-size: 0.42rem;
+  height: 0.68rem;
+  line-height: 0.68rem;
+  color: #000;
+  top: 0.58rem!important;
+}
+.sex-box .cont .main .man {
+  top: 0;
+}
+.sex-box .cont .main .woman {
+  top: 1.3rem;
+}
+.sex-box .cont .main li {
+  text-align: center;
+  height: 0.58rem;
+  line-height: 0.58rem;
+  position: absolute;
+  width: 100%;
+}
+.sex-box .cont .main p {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #cdcdcd;
+  top: 50%;
+}
+.sex-box .cont .main .border1 {
+  top: 0.58rem;
+}
+.sex-box .cont .main .border2 {
+  top: 1.28rem;
+}

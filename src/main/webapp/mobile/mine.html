@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>直播</title>
+		<meta charset="UTF-8">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-us-bar-style" content="#ff0033">
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mine.css"/>
+		
+		<script src="js/commin.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<header>
+			<a href="index.html" class="fh"><img src="img/fh.png"/></a>
+			个人中心
+			<a href="#" class="more">
+				<span></span>
+				<span></span>
+				<span></span>
+			</a>
+		</header>
+
+		<div class="user-info">
+			<ul class="user-pto">
+				<img src=""/>
+			</ul>
+			<ul class="user-name">
+			</ul>
+		</div>
+		
+		<div class="link-list">
+			<ul>
+				<li><a href="index.html"><span>首页</span></a></li>
+				<li><a href="mycenter.html"><span>基本资料</span></a></li>
+				<li><a href="history.html"><span>观看记录</span></a></li>
+				<li><a href="sjyz.html"><span>修改密码</span></a></li>
+				<li><a href="javascript:;" id="quit"><span>退出</span></a></li>
+			</ul>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		/*获取用户基础数据*/
+//		$.get("/jzpdzb/mobile/user/findUser", null, function (result) {
+//			if (result.resultCode == 200) {
+//				var data=result.data;
+//				$(".user-name").text(data.nickname);
+//				$(".user-pto img").attr("src",data.icon?data.icon:"img/userpto.png");
+//		    } else {
+//		        top.location.href = "login.html";
+//		    }
+//		});
+		/*用户退出*/
+		$("#quit").click(function () {
+			/*清除localStorage数据*/
+            localStorage.removeItem('userId');
+            localStorage.removeItem('phone');
+            localStorage.removeItem('token');
+			window.location.href="login.html";
+
+        })
+	</script>
+</html>

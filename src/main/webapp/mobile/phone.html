@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>写评论</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-us-bar-style" content="#ff0033">
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/set.css"/>
+		<script src="js/commin.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<header>
+			<a href="" class="fh"><img src="img/fh.png"/></a>
+			修改手机号
+		</header>
+		
+		<div class="xgsjh">
+			<ul class="tit">
+				请输入原手机收到的验证码:
+			</ul>
+			<ul class="xgsj">
+				<input type="text" name="" id="" value="" placeholder="验证码" />
+				<input type="button" class="fsyz" value="发送验证码"/>
+			</ul>
+			<ul class="next">
+				下一步
+			</ul>
+		</div>
+		
+		
+	<!-- 验证完毕之后重新渲染页面	
+		<div class="xgsjh">
+			<ul class="tit">
+				您可以输入新的手机号进行更换了:
+			</ul>
+			<ul class="xgsj">
+				<input type="text" name="" id="" value="" placeholder="手机号码"  class="sjhm"/>
+			</ul>
+			<ul class="next finsh">
+				修改手机号码
+			</ul>
+		</div>
+		
+	-->
+		
+	</body>
+</html>
+<script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(".fsyz").on("click",function (){
+		var time = 60,
+			timer = null;
+		$(".fsyz").attr({"disabled":"disabled"});
+		$(".fsyz").html("发送中"+time--);
+		setInterval(function (){
+			$(".fsyz").html("发送中"+time--);
+			time == 0 ? $(".fsyz").html("重新发送") : "";
+		},1000	)
+	})
+</script>

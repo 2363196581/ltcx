@@ -1,0 +1,42 @@
+.zhmm {
+  margin-top: 0.22rem;
+}
+.zhmm li {
+  position: relative;
+  width: 5.65rem;
+  margin: 0 auto;
+}
+.zhmm input {
+  width: 5.65rem;
+  height: 0.7rem;
+  border: 1px solid #b6b9c2;
+  display: block;
+  margin: 0 auto;
+  margin-top: 0.18rem;
+  font-size: 0.25rem;
+  color: #b6b9c2;
+  padding-left: 0.25rem;
+  box-sizing: border-box;
+}
+.zhmm .sub {
+  padding: 0;
+  font-size: 0.3rem;
+  line-height: 0.7rem;
+  background-color: #ff0033;
+  color: #fff;
+  margin-top: 1.12rem;
+}
+/* 设置新密码  */
+/* 手机号验证 */
+.yzm {
+  position: absolute;
+  width: 1.6rem;
+  line-height: 0.7rem;
+  color: #fff;
+  height: 100%;
+  background-color: #ff0033;
+  font-size: 0.24rem;
+  text-align: center;
+  top: 0;
+  right: 0;
+}

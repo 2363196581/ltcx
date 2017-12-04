@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>注册</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-us-bar-style" content="#ff0033">
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/register.css"/>
+		<script src="js/commin.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<header>
+			<a href="javascript:history.go(-1);" class="fh"><img src="img/fh.png"/></a>
+			注册
+			<!-- <a href="mine.html" class="more"> -->
+				<span></span>
+				<span></span>
+				<span></span>
+			</a>
+		</header>
+		<!-- 顶部结束 -->
+		
+		<div class="main">
+			<form action="" id="form-add" method="post">
+			
+ <!-- username   | VARCHAR(32)  | YES  |     |                   | 登录用户名   
+ nickname   | VARCHAR(32)  | YES  |     |                   | 昵称      
+ realname   | VARCHAR(32)  | YES  |     |                   | 真实姓名    
+ password   | VARCHAR(64)  | YES  |     |                   | 密码      
+ pwdMD5     | VARCHAR(64)  | YES  |     |                   | 密码MD5   
+ mobile     | VARCHAR(15)  | YES  |     |                   | 手机号     
+ email      | VARCHAR(255) | YES  |     |                   | 邮箱      
+ icon       | VARCHAR(255) | YES  |     |                   | 头像      
+ userSig    | VARCHAR(255) | YES  |     |                   | userSig 
+ qq         | VARCHAR(32)  | YES  |     |                   |         
+ wechat     | VARCHAR(32)  | YES  |     |                   |         
+ sky        | VARCHAR(32)  | YES  |     |                   |         
+ sex        | INT(10)      | YES  |     | 0                 | 性别 0男，1女
+ userType   | INT(10)      | YES  |     | 0                 | 用户类型(0主播，1观众)
+ birthday   | DATE(10)     | YES  |     |                   | 生日      
+ updatetime | DATETIME(19) | YES  |     |                   | 修改时间    
+ datetime   | DATETIME(19) | YES  |     | CURRENT_TIMESTAMP | 创建时间    
+ delFlag    | INT(10)      | YES  |     | 0                 | 是否可用： 0可用 1不可用 -->
+
+				<ul>
+					<li>手机号：</li>
+					<li><input type="text" name="phone" id="phone" value="" placeholder="请输入手机号" /></li>
+					<li class="hqyzm" onclick="sms()">获取验证码</li>
+				</ul>
+				<ul>
+					<li>验证码：</li>
+					<li><input type="text" name="captch" id="captch" value="" placeholder="请输入验证码" /></li>
+				</ul>
+				<!--<ul>-->
+					<!--<li>登录邮箱：</li>-->
+					<!--<li><input type="text" name="email" id="email" value="" /></li>-->
+				<!--</ul>-->
+				<!--<ul>-->
+					<!--<li>昵称：</li>-->
+					<!--<li><input type="text" name="nickname" id="nickname" value="" /></li>-->
+				<!--</ul>-->
+				<ul>
+					<li>密码：</li>
+					<li><input type="password" name="password" id="password" value="" placeholder="请输入密码"  /></li>
+				</ul>
+				<ul>
+					<li>确认密码：</li>
+					<li><input type="password" name="password2" id="password2" value="" placeholder="请再次输入密码"  /></li>
+				</ul>
+
+<!-- 				<ul>
+					<li>性别：</li>
+					<li>
+						<select class="select" name="sex" id="sex" size="1">
+							<option value="0">男</option>
+							<option value="1">女</option>
+						</select>
+					</li>
+				</ul>
+ -->			
+
+		
+		</div>
+				<input type="submit" value="注册" class="sub"/>
+			</form>
+	</body>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/layer/2.4/layer.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/jquery.validation/1.14.0/jquery.validate.js"></script> 
+	<script type="text/javascript" src="js/jquery.validation/1.14.0/validate-methods.js"></script> 
+	<script type="text/javascript" src="js/jquery.validation/1.14.0/messages_zh.js"></script>
+	<script type="text/javascript">
+		function sms() {
+	        var mobile = $("#phone").val();
+	        if (!mobile) {
+	            layer.msg("请输入手机号", { icon: 2, time: 1000 });
+	            return false;
+	        }
+	        $.get("/jz/getCaptch.do", { "phone": mobile,"state" : 1 }, function (response) {
+	            console.log(response);
+	            resultCode = response.resultCode;
+	        });
+	    }
+		$.ajaxSetup ({
+		    cache: false //close AJAX cache 
+		}); 
+		$.validator.addMethod('password2', function(value, element) {
+			var password = $("#password").val();
+			var password2 = $("#password2").val();
+			var flag=password==password2?true:false;
+			return (flag);
+		}, '密码不一致！');
+//		$.validator.addMethod('phone', function(value, element) {
+//			var mobile = $("#phone").val();
+//			var falg=false;
+//			$.ajax({
+//                type: "post",
+//                url: "/lwgk/mobile/user/mobileExists",
+//                data: {"phone":mobile},
+//                cache: false,  //禁用缓存
+//                async:false,
+//                dataType: "json",
+//                success: function (result) {
+//                	falg= result.resultCode == 200?true:false;
+//                },
+//            });
+//	            return falg;
+//		}, '已经存在！');
+		$("#form-add").validate({
+			rules:{
+				username:{
+//					required:true,
+				},
+				nickname:{
+//					required:true,
+				},
+				password:{
+					required:true,
+				},
+				password2:{
+					required:true,
+					password2:true,
+				},
+				phone:{
+					required:true,
+					isMobile:true,
+//					phone:true,
+				},
+                captch:{
+					required:true,
+				},
+			},
+			onkeyup:false,
+			focusCleanup:true,
+			success:"valid",
+			submitHandler:function(form){
+	        	var d =$(form).serialize();
+	            $.post("/lw/reg.do", d, function (data) {
+	                if (data.resultCode == 200) {
+	                    layer.msg('注册成功！跳转到登陆页面！', {icon: 1, time: 1000},function(){
+	                    	top.location.href = "login.html";
+	                    });
+	                } else {
+	                    layer.msg('注册失败!', {icon: 1, time: 1000});
+	                }
+	            });
+			}
+		});
+	</script>
+</html>

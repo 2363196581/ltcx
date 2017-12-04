@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>家政频道-验证码登陆</title>
+		<meta charset="UTF-8">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-us-bar-style" content="#ff0033">
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/login.css"/>
+		<script src="js/commin.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		
+		<div class="logo">
+			<!-- <img src="img/logo.jpg"/> -->
+			家政频道
+		</div>
+		
+		<div class="users">
+			<form action="" method="post">
+				<ul>
+					<li><input type="text" id="mobile" name="mobile" placeholder="请输入手机号" class="phone"/><input type="button" value="获取验证码" onclick="sms();" class="yzm" /></li>
+					<li>
+						<input type="password" name="pwd" id="pwd" placeholder="请输入验证码" class="password"/>
+						<a href="login.html" class="wjmm">密码登陆</a>
+					</li>
+				</ul>
+				<ul>
+					<input type="submit" name="" id="" value="登录" class="login"/>
+					<a href="register.html" class="registered">注册</a>
+				</ul>
+			</form>
+		</div>
+		
+	</body>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/layer/2.4/layer.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript">
+		function sms() {
+	        var mobile = $("#mobile").val();
+	        if (!mobile) {
+	            layer.msg("请输入手机号", { icon: 2, time: 1000 });
+	            return false;
+	        }
+	        $.post("/jzpdzb/mobile/user/sms", { "mobile": mobile }, function (response) {
+	            console.log(response);
+	            resultCode = response.resultCode;
+	        });
+	    }
+		$.ajaxSetup ({
+		    cache: false //close AJAX cache 
+		}); 
+		$("form").submit(function(e){
+			e.preventDefault();
+			var str = /^1\d{10}$/;
+	        var mobile = $("#mobile").val();
+	        var pwd = $("#pwd").val();
+	
+	        if (!mobile) {
+	            layer.msg("请输入手机号", { icon: 2, time: 1000 });
+	            return false;
+	        } else if (!str.test(mobile)) {
+	            layer.msg("手机号输入有误!", { icon: 2, time: 1000 });
+	            return false;
+	        }
+	        if (!pwd) {
+	            layer.msg("请输入验证码！", { icon: 2, time: 1000 });
+	            return false;
+	        }
+	        $.post("/jzpdzb/mobile/user/mobileLogin", { "mobile": mobile, "pwd": pwd}, function (data) {
+	            if (data.resultCode == 200) {
+	            	var urlStr="/jzpdzb/mobile/index.html";
+					if($.cookie('url'))urlStr=$.cookie('url');
+					top.location.href = urlStr;
+	            } else {
+	                layer.msg(data.message, { icon: 2, time: 3000 });
+	            }
+	        });
+		});
+	</script>
+</html>

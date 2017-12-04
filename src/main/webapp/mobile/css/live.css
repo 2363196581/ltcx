@@ -1,0 +1,232 @@
+.live {
+  width: 100%;
+  height: 4.25rem;
+  position: relative;
+}
+.live .tit {
+  height: 0.84rem;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 0.28rem;
+  color: #fff;
+  line-height: 0.84rem;
+  padding: 0 0.45rem;
+  box-sizing: border-box;
+}
+/* 直播 */
+.tab-box .head {
+  height: 0.75rem;
+  border-bottom: 1px solid #cbcbcb;
+  background: #f5f5f5;
+  font-size: 0.26rem;
+  text-align: center;
+  line-height: 0.75rem;
+}
+.tab-box .head li {
+  width: calc(33.33333333%);
+  float: left;
+  height: 100%;
+}
+.tab-box .head .active {
+  color: #ff0033;
+  background-color: #fff;
+  border-bottom: 2px solid #ff0033;
+}
+.tab-box .main {
+  margin-top: 1px;
+}
+.tab-box .main .hdlt {
+  display: none;
+}
+.tab-box .main .hdlt .dm-list {
+  padding: 0.2rem 0.2rem 0.25rem;
+  border-bottom: 1px solid #c1c1c1;
+}
+.tab-box .main .hdlt .dm-list:last-child {
+  border-bottom: none;
+}
+.tab-box .main .hdlt .dm-list .fl {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.tab-box .main .hdlt .dm-list .fl img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.tab-box .main .hdlt .dm-list .center {
+  margin-left: 0.25rem;
+  float: left;
+  font-size: 0.22rem;
+}
+.tab-box .main .hdlt .dm-list .center .name {
+  margin-top: 0.1rem;
+  color: #333;
+}
+.tab-box .main .hdlt .dm-list .center .desc {
+  margin-top: 0.1rem;
+  color: #999;
+}
+.tab-box .main .hdlt .dm-list .fr {
+  margin-top: 0.1rem;
+  font-size: 0.18rem;
+  color: #999;
+}
+.tab-box .main .hdlt .pinglun {
+  background-color: #f0f0f0;
+  padding: 0.15rem 0.2rem 0.15rem 0.25rem;
+}
+.tab-box .main .hdlt .pinglun .fl {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+.tab-box .main .hdlt .pinglun .fl img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.tab-box .main .hdlt .pinglun .center {
+  width: 4.85rem;
+  height: 0.56rem;
+  float: left;
+  margin-left: 0.2rem;
+}
+.tab-box .main .hdlt .pinglun .center input {
+  border: 1px solid #c6c6c6;
+  border-radius: 0.1rem;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.tab-box .main .hdlt .pinglun .fr {
+  width: 1.3rem;
+  height: 0.56rem;
+  background-color: #ff0033;
+  text-align: center;
+  line-height: 0.56rem;
+  color: #fff;
+  font-size: 0.3rem;
+}
+.tab-box .main .jxpl {
+  display: none;
+}
+.tab-box .main .jxpl .xpl {
+  background: url(../img/pinglun.jpg) no-repeat right center;
+  -webkit-background-size: 0.3rem 0.3rem;
+  background-size: 0.3rem 0.3rem;
+  margin-right: 0.25rem;
+  margin-top: 0.25rem;
+  font-size: 0.28rem;
+  text-align: right;
+  padding-right: 0.5rem;
+}
+.tab-box .main .jxpl .pl-list {
+  padding: 0.2rem 0.2rem 0.25rem;
+  border-bottom: 1px solid #c1c1c1;
+}
+.tab-box .main .jxpl .pl-list:last-child {
+  border-bottom: none;
+}
+.tab-box .main .jxpl .pl-list .fl {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  margin-top: 0.05rem;
+  overflow: hidden;
+}
+.tab-box .main .jxpl .pl-list .fl img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.tab-box .main .jxpl .pl-list .center {
+  margin-left: 0.25rem;
+  float: left;
+  font-size: 0.24rem;
+}
+.tab-box .main .jxpl .pl-list .center .name {
+  color: #333;
+}
+.tab-box .main .jxpl .pl-list .center .desc {
+  color: #999;
+}
+.tab-box .main .jxpl .pl-list .center .time {
+  font-size: 0.18rem;
+  color: #999;
+}
+.tab-box .main .jxpl .pl-list .fr {
+  margin-top: 0.1rem;
+  padding-top: 0.1rem;
+  font-size: 0.18rem;
+  color: #999;
+  padding-left: 0.45rem;
+  background: url(../img/zan2.jpg) no-repeat center left;
+  -webkit-background-size: 0.27rem 0.27rem;
+  background-size: 0.27rem 0.27rem;
+}
+.tab-box .main .wqsp {
+  padding: 0 0.2rem;
+  display: none;
+}
+.tab-box .main .wqsp .video {
+  width: 100%;
+  height: 100%;
+}
+.tab-box .main .wqsp .video img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.tab-box .main .wqsp .video-list {
+  margin-top: 0.2rem;
+}
+.tab-box .main .wqsp .video-list a:nth-child(1) {
+  margin-top: 0;
+}
+.tab-box .main .wqsp .video-list a:nth-child(2) {
+  margin-top: 0;
+}
+.tab-box .main .wqsp .video-list a {
+  margin-top: 0.35rem;
+}
+.tab-box .main .wqsp .video-box {
+  width: 3.4rem;
+  height: 1.9rem;
+  position: relative;
+}
+.tab-box .main .wqsp .zt {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  line-height: 1.9rem;
+  font-size: 0.3rem;
+  color: #fff;
+}
+.tab-box .main .wqsp .time {
+  width: 0.95rem;
+  height: 0.3rem;
+  font-size: 0.2rem;
+  color: #fff;
+  text-align: center;
+  line-height: 0.3rem;
+  position: absolute;
+  right: 0.1rem;
+  bottom: 0.1rem;
+  background: rgba(0, 0, 0, 0.4);
+}
+.tab-box .main .wqsp .tit {
+  width: 3.4rem;
+  font-size: 0.24rem;
+  color: #626262;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,59 @@
+.user-info {
+  width: 100%;
+  height: 3.9rem;
+  overflow: hidden;
+  background-color: rgba(255,0,51,0.8);
+}
+.user-info .user-pto {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0.55rem auto 0;
+}
+.user-info .user-pto img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.user-info .user-name {
+  font-size: 0.35rem;
+  color: #fff;
+  text-align: center;
+  line-height: 1.1rem;
+}
+.link-list ul li {
+  height: 1rem;
+  line-height: 1rem;
+  border-bottom: 1px solid #e2e2e2;
+  background-repeat: no-repeat;
+  background-position: 0.45rem center;
+  -webkit-background-size: 0.55rem 0.55rem;
+  background-size: 0.55rem 0.55rem;
+}
+.link-list ul li a {
+  display: block;
+  padding: 0 0.3rem 0 1.3rem;
+  font-size: 0.25rem;
+  color: #333;
+}
+.link-list ul li a span {
+  display: block;
+  background-image: url(../img/arrow-r.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+  -webkit-background-size: 0.12rem 0.17rem1;
+  background-size: 0.12rem 0.17rem1;
+}
+.link-list ul li:nth-child(1) {
+  background-image: url(../img/index.png);
+}
+.link-list ul li:nth-child(2) {
+  background-image: url(../img/ziliao.png);
+}
+.link-list ul li:nth-child(3) {
+  background-image: url(../img/sc.png);
+}
+.link-list ul li:nth-child(4) {
+  background-image: url(../img/set.png);
+}

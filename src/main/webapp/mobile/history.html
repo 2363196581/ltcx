@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>家政部分-观看记录</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-us-bar-style" content="#ff0033">
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/history.css"/>
+		<script src="js/commin.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		
+		<header>
+			<a href="javascript:history.go(-1);" class="fh"><img src="img/fh.png"/></a>
+			观看记录
+			<a href="mine.html" class="more">
+				<span></span>
+				<span></span>
+				<span></span>
+			</a>
+		</header>
+		
+		<!-- 顶部结束 -->
+		
+		<div class="search">
+			<input type="text" name="" id="" value="" placeholder="搜索标题、主播"/>
+		</div>
+		
+		<!-- 搜索框  -->
+		
+		<div class="history-lift">
+			
+			<!-- 观看历史电梯开始 -->
+			
+			<div class="lift">
+				<div class="time">今天</div>
+				<div class="list  clearfloat">
+					<ul class="fl">
+						<img src="img/history.jpg"/>
+					</ul>
+					<ul class="center">
+						<li class="tit">58同城房地产战略升级培训</li>
+						<li class="status">已经观看完毕</li>
+						<li class="num"><img src="img/num.jpg"/>10万+</li>
+					</ul>
+					<ul class="fr">
+						<img src="img/zan2.jpg"/>
+						<span>22</span>
+					</ul>
+				</div>
+			</div>
+			
+			
+			<div class="lift">
+				<div class="time">2016-11-28</div>
+				<div class="list  clearfloat">
+					<ul class="fl">
+						<img src="img/history.jpg"/>
+					</ul>
+					<ul class="center">
+						<li class="tit">58同城房地产战略升级培训</li>
+						<li class="status">已经观看完毕</li>
+						<li class="num"><img src="img/num.jpg"/>10万+</li>
+					</ul>
+					<ul class="fr">
+						<img src="img/zan2.jpg"/>
+						<span>22</span>
+					</ul>
+				</div>
+				<div class="list  clearfloat">
+					<ul class="fl">
+						<img src="img/history.jpg"/>
+					</ul>
+					<ul class="center">
+						<li class="tit">58同城房地产战略升级培训</li>
+						<li class="status">已经观看完毕</li>
+						<li class="num"><img src="img/num.jpg"/>10万+</li>
+					</ul>
+					<ul class="fr">
+						<img src="img/zan2.jpg"/>
+						<span>22</span>
+					</ul>
+				</div>
+				<div class="list  clearfloat">
+					<ul class="fl">
+						<img src="img/history.jpg"/>
+					</ul>
+					<ul class="center">
+						<li class="tit">58同城房地产战略升级培训</li>
+						<li class="status">已经观看完毕</li>
+						<li class="num"><img src="img/num.jpg"/>10万+</li>
+					</ul>
+					<ul class="fr">
+						<img src="img/zan2.jpg"/>
+						<span>22</span>
+					</ul>
+				</div>
+			</div>
+			
+			
+			<div class="lift">
+				<div class="time">今天</div>
+				<div class="list  clearfloat">
+					<ul class="fl">
+						<img src="img/history.jpg"/>
+					</ul>
+					<ul class="center">
+						<li class="tit">58同城房地产战略升级培训</li>
+						<li class="status">已经观看完毕</li>
+						<li class="num"><img src="img/num.jpg"/>10万+</li>
+					</ul>
+					<ul class="fr">
+						<img src="img/zan2.jpg"/>
+						<span>22</span>
+					</ul>
+				</div>
+			</div>
+			
+			
+			<div class="lift">
+				<div class="time">2016-11-28</div>
+				<div class="list  clearfloat">
+					<ul class="fl">
+						<img src="img/history.jpg"/>
+					</ul>
+					<ul class="center">
+						<li class="tit">58同城房地产战略升级培训</li>
+						<li class="status">已经观看完毕</li>
+						<li class="num"><img src="img/num.jpg"/>10万+</li>
+					</ul>
+					<ul class="fr">
+						<img src="img/zan2.jpg"/>
+						<span>22</span>
+					</ul>
+				</div>
+			</div>
+			
+			
+		</div>
+		
+		
+	</body>
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		$.get("/jzpdzb/mobile/user/findUser", null, function (result) {
+			if (result.resultCode == 200) {
+		    } else {
+		        top.location.href = "login.html";
+		    }
+		});
+	</script>
+</html>

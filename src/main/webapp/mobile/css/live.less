@@ -1,0 +1,237 @@
+
+.live{
+    width: 100%;
+    height: 4.25rem;
+    position: relative;
+    .tit{
+        height: 0.84rem;
+        width: 100%;
+        background: rgba(0,0,0,0.2);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        font-size: 0.28rem;
+        color: #fff;
+        line-height: 0.84rem;
+        padding:0 0.45rem;
+        box-sizing: border-box;
+    }
+}
+
+/* 直播 */
+
+.tab-box{
+    .head{
+        height: 0.75rem;
+        border-bottom: 1px solid #cbcbcb;
+        background: #f5f5f5;
+        font-size: 0.26rem;
+        text-align: center;
+        line-height: 0.75rem;
+        li{
+            width: calc(100 / 3%);
+            float: left;
+            height: 100%;
+        }
+        .active{
+            color: #ff0033;
+            background-color: #fff;
+            border-bottom: 2px solid #ff0033;
+        }
+    }
+    .main{
+        margin-top: 1px;
+        .hdlt{
+            display: none;
+            .dm-list{
+                padding:  0.2rem 0.2rem 0.25rem;
+                border-bottom: 1px solid #c1c1c1;
+                &:last-child{
+                    border-bottom: none;
+                }
+                .fl{
+                    width: 0.75rem;
+                    height: 0.75rem;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                    }
+                }
+                .center{
+                    margin-left: 0.25rem;
+                    float: left;
+                    font-size: 0.22rem;
+                    .name{
+                        margin-top: 0.1rem;
+                        color: #333;
+                    }
+                    .desc{
+                        margin-top: 0.1rem;
+                        color: #999;
+                    }
+                }
+                .fr{
+                    margin-top: 0.1rem;
+                    font-size: 0.18rem;
+                    color: #999;
+                }
+            }
+            .pinglun{
+                background-color: #f0f0f0;
+                padding: 0.15rem 0.2rem 0.15rem 0.25rem;
+                .fl{
+                    width: 0.5rem;
+                    height: 0.5rem;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                    }
+                }
+                .center{
+                    width: 4.85rem;
+                    height: 0.56rem;
+                    float: left;
+                    margin-left: 0.2rem;
+                    input{
+                    border: 1px solid #c6c6c6;
+                    border-radius: 0.1rem;
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                    }
+                }
+                .fr{
+                    width: 1.3rem;
+                    height: 0.56rem;
+                    background-color: #ff0033;
+                    text-align: center;
+                    line-height: 0.56rem;
+                    color: #fff;
+                    font-size: 0.3rem;
+                }
+            }
+        }
+        .jxpl{
+            display: none;
+            .xpl{
+                background: url(../img/pinglun.jpg)no-repeat right center;
+                -webkit-background-size: 0.3rem 0.3rem;
+                background-size: 0.3rem 0.3rem;
+                margin-right: 0.25rem;
+                margin-top: 0.25rem;
+                font-size: 0.28rem;
+                text-align: right;
+                padding-right: 0.5rem;
+            }
+            .pl-list{
+                padding:  0.2rem 0.2rem 0.25rem;
+                border-bottom: 1px solid #c1c1c1;
+                &:last-child{
+                    border-bottom: none;
+                }
+                .fl{
+                    width: 0.75rem;
+                    height: 0.75rem;
+                    border-radius: 50%;
+                   margin-top: 0.05rem;
+                    overflow: hidden;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                    }
+                }
+                .center{
+                    margin-left: 0.25rem;
+                    float: left;
+                    font-size: 0.24rem;
+                    .name{
+                        color: #333;
+                    }
+                    .desc{
+                        color: #999;
+                    }
+                    .time{
+                        font-size: 0.18rem;
+                        color: #999;
+                    }
+                }
+                .fr{
+                    margin-top: 0.1rem;
+                    padding-top: 0.1rem;
+                    font-size: 0.18rem;
+                    color: #999;
+                    padding-left: 0.45rem;
+                    background: url(../img/zan2.jpg)no-repeat center left;
+                    -webkit-background-size: 0.27rem 0.27rem;
+                    background-size: 0.27rem 0.27rem;
+                }
+            }
+        }
+        .wqsp{
+            padding: 0 0.2rem;
+            display: none;
+             .video{
+                 width: 100%;
+                 height: 100%;
+                 img{
+                     width: 100%;
+                     height: 100%;
+                     display: block;
+                 }
+             }
+             .video-list{
+                 margin-top: 0.2rem;
+                 a:nth-child(1){
+                     margin-top: 0;
+                 }
+                 a:nth-child(2){
+                     margin-top: 0;
+                 }
+                 a{
+                     margin-top: 0.35rem;
+                 }
+             }
+             .video-box{
+                 width: 3.4rem;
+                 height: 1.9rem;
+                 position: relative;
+             }
+             .zt{
+                 width: 100%;
+                 height: 100%;
+                 position: absolute;
+                 top: 0;
+                 left: 0;
+                 text-align: center;
+                 line-height: 1.9rem;
+                 font-size: 0.3rem;
+                 color: #fff;
+             }
+             .time{
+                 width: 0.95rem;
+                 height: 0.3rem;
+                 font-size: 0.2rem;
+                 color: #fff;
+                 text-align: center;
+                 line-height: 0.3rem;
+                 position: absolute;
+                 right: 0.1rem;
+                 bottom: 0.1rem;
+                 background: rgba(0,0,0,0.4);
+             }
+             .tit{
+                 width: 3.4rem;
+                 font-size: 0.24rem;
+                 color: #626262;
+                 overflow:hidden; 
+                 text-overflow:ellipsis; 
+                 white-space:nowrap;
+             }
+        }
+    }
+}
