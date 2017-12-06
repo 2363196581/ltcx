@@ -32,6 +32,7 @@ public enum CodeEnum {
     PHONEREPEAT("108", "您的手机号已被注册"),
     PHONEFAIL("109", "您的手机号还没有注册"),
     OPENLOGIN("110", "请完善个人信息"),
+    HASNEXT("111", "可继续加载元素"),
     ISBLACK("113", "已加入黑名单"),
     NOBLACK("114", "未加入黑名单"),
     NOADDRESS("117", "地址参数错误"),

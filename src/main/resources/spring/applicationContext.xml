@@ -37,13 +37,21 @@
     <bean class="com.connxun.util.spring.SpringContextHolder"
           lazy-init="false"/>
 
+    <!-- 向Spring容器注册以下四个BeanPostProcessor：
+AutowiredAnnotationBeanPostProcessor：@Autowired
+CommonAnnotationBeanPostProcessor：@ Resource 、@ PostConstruct、@ PreDestroy
+PersistenceAnnotationBeanPostProcessor:@PersistenceContext
+RequiredAnnotationBeanPostProcessor:@Required -->
     <context:annotation-config/>
-    <context:component-scan base-package="com"/><!--
-		spring从该包下面自动扫描组件 -->
+
+    <!-- spring从该包下面自动扫描组件 -->
+    <context:component-scan base-package="com"/>
 
     <!-- spring从properties里面读取jdbc配置文件 -->
     <context:property-placeholder
             ignore-unresolvable="true" location="classpath:/application.properties"/>
+
+    <!-- 支持MVC注解 -->
     <mvc:annotation-driven/>
 
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
@@ -84,6 +92,7 @@
     <jpa:repositories base-package="com.connxun.*.repositories"
                       transaction-manager-ref="transactionManager"
                       entity-manager-factory-ref="entityManagerFactory"/>
+
     <!-- 实体管理器 -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -146,6 +155,9 @@
 
         <aop:advisor pointcut-ref="bussinessService" advice-ref="txAdvice"/>
     </aop:config>
+
+    <!-- 支持事务注解 -->
+    <tx:annotation-driven />
 
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
@@ -231,8 +243,9 @@
 
     <bean id="stringRedisSerializer"
           class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+
     <!--设置公共参数 -->
-    <bean id="pubConfig" class="com.connxun.util.config.PubConfig">
+    <bean id="pubConfig" class="com.connxun.config.config.PubConfig">
         <property name="imageServer" value="${imageServer}"/>
         <property name="imageUploadPath" value="${imageUploadPath}"/>
         <property name="staticServer" value="${staticServer}"/>

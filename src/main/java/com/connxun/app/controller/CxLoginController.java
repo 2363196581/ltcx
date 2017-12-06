@@ -125,7 +125,7 @@ public class CxLoginController extends AppBaseController {
      */
     @ApiOperation(value = "qq 微信 新浪微博进行登录接口")
     @PostMapping(value = "qws")
-    @ApiResponses(@ApiResponse(code = 110, message = "请完善个人信息"))
+    @ApiResponses(@ApiResponse(code = 110, message = "登录成功，请完善个人信息"))
     @ResponseBody
     public JsonEntity openLogin(@ApiParam(required = true, name = "uid", value = "第三方登录的唯一标识")
                                 @RequestParam(value = "uid", required = true) String uid,

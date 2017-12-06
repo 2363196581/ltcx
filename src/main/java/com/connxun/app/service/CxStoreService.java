@@ -1,8 +1,8 @@
 package com.connxun.app.service;
 
 import com.connxun.app.common.BaseService;
-import com.connxun.app.entity.CxCarousel;
-import com.connxun.app.repositories.ICxCarouselRepository;
+import com.connxun.app.entity.CxStore;
+import com.connxun.app.repositories.ICxStoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,27 +10,27 @@ import java.util.List;
 
 /**
  * @Author anna
- * @Date 2017-12-01 15:46
+ * @Date 2017-12-05 16:45
  * @Description
  */
 @Service
-public class CxCarouselService  implements BaseService<CxCarousel, Integer> {
+public class CxStoreService implements BaseService<CxStore, Integer> {
 
     @Autowired
-    private ICxCarouselRepository iCxRepository;
+    private ICxStoreRepository iCxRepository;
 
     @Override
-    public <S extends CxCarousel> S save(S entity) {
+    public <S extends CxStore> S save(S entity) {
         return iCxRepository.save(entity);
     }
 
     @Override
-    public CxCarousel findOne(Integer primaryKey) {
+    public CxStore findOne(Integer primaryKey) {
         return iCxRepository.findOne(primaryKey);
     }
 
     @Override
-    public List<CxCarousel> findAll() {
+    public List<CxStore> findAll() {
         return iCxRepository.findAll();
     }
 

@@ -1,10 +1,14 @@
 package com.connxun.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @Author：luoxiaosheng
@@ -14,6 +18,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "cx_collect")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CxCollect implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -28,10 +33,37 @@ public class CxCollect implements Serializable {
   @JsonIgnore
   private String state;
   @JsonIgnore
-  private java.sql.Timestamp createtime;
+  @DateTimeFormat(pattern = "yyyy.MM.dd HH:mm")
+  @JsonFormat(pattern = "yyyy.MM.dd HH:mm", timezone = "GMT+8")
+  private Date createtime;
   @JsonIgnore
-  private java.sql.Timestamp updatetime;
+  @DateTimeFormat(pattern = "yyyy.MM.dd HH:mm")
+  @JsonFormat(pattern = "yyyy.MM.dd HH:mm", timezone = "GMT+8")
+  private Date updatetime;
   @JsonIgnore
   private Long delflag;
 
+
+  /**
+   * 新增时执行的函数
+   */
+  @PrePersist
+  void preInsert() {
+    if (createtime == null) {
+      createtime = new Date();
+    }
+    if (updatetime == null) {
+      updatetime = new Date();
+    }
+  }
+
+  /**
+   * 修改时执行的函数
+   */
+  @PreUpdate
+  void preUpdate() {
+    if (updatetime == null) {
+      updatetime = new Date();
+    }
+  }
 }

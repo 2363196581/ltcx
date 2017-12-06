@@ -12,8 +12,10 @@ import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,7 @@ import java.util.List;
  * @Date 2017-11-16 18:13
  * @Description
  */
-@Controller
+@RestController
 @RequestMapping(value = "api/category")
 @Api(tags = {"Category"},value = "CxCategoryController",description = "菜单服务分类信息")
 public class CxCategoryController extends AppBaseController {
@@ -39,8 +41,7 @@ public class CxCategoryController extends AppBaseController {
      * @return
      */
     @ApiOperation(value = "获取全部服务分类", notes = "获取全部服务分类")
-    @PostMapping("categoryAll")
-    @ResponseBody
+    @PostMapping(value = "categoryAll")
     public JsonEntity getList() {
 
         //分页查询
@@ -52,8 +53,6 @@ public class CxCategoryController extends AppBaseController {
         List<CxCategory> cxCategories = cxCategoryService.findAll();
         int size = cxCategories.size();
         if (size > 0) {
-//            List<LwVoucherDTO> lwVoucherDTOS = new ArrayList<LwVoucherDTO>();
-
             json = listToJson(cxCategories);
             json.setExt(size + "");
         } else {
@@ -69,7 +68,6 @@ public class CxCategoryController extends AppBaseController {
      */
     @ApiOperation(value = "获取一级服务下对应的二级服务", notes = "获取一级服务下对应的二级服务")
     @PostMapping("categorySub")
-    @ResponseBody
     public JsonEntity findOne(@ApiParam(required = true, name = "categoryId", value = "一级服务id")
                                   @RequestParam(value = "categoryId", required = true) String categoryId) {
 

@@ -11,18 +11,14 @@ import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author anna
  * @Date 2017-11-16 15:46
  * @Description 用户模块
  */
-@Controller
+@RestController
 @RequestMapping(value = "api/user")
 @Api(tags = {"User"},description = "用户相关操作", value = "用户相关操作")
 public class CxUserController extends AppBaseController {
@@ -41,7 +37,6 @@ public class CxUserController extends AppBaseController {
      */
     @ApiOperation(value = "用户基础信息")
     @RequestMapping(value = "userInfo", method = RequestMethod.POST)
-    @ResponseBody
     public JsonEntity userInfo(
             @ApiParam(required = true, name = "userId", value = "用户id")
             @RequestParam(value = "userId", required = true) String userId,
@@ -72,7 +67,6 @@ public class CxUserController extends AppBaseController {
      */
     @ApiOperation(value = "用户信息修改")
     @RequestMapping(value = "updateUserInfo", method = RequestMethod.POST)
-    @ResponseBody
     public JsonEntity updateUserInfo(
             @ApiParam(required = true, name = "userId", value = "用户id")
             @RequestParam(value = "userId", required = true) String userId,
@@ -127,7 +121,6 @@ public class CxUserController extends AppBaseController {
      */
     @ApiOperation(value = "我的发布")
     @RequestMapping(value = "myPublicCard", method = RequestMethod.POST)
-    @ResponseBody
     public JsonEntity loginCaptch(
             @ApiParam(required = true, name = "userId", value = "用户id")
             @RequestParam(value = "userId", required = true) String userId,

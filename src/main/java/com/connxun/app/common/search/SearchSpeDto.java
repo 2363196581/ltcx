@@ -1,4 +1,4 @@
-package com.connxun.app.common;
+package com.connxun.app.common.search;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.connxun.app.common;
+package com.connxun.app.common.sort;
 
 import org.springframework.data.domain.Sort;
 

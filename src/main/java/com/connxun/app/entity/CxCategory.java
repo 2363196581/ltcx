@@ -42,7 +42,7 @@ public class CxCategory implements Serializable {
   @JsonIgnore
   //mappedBy="order": 指明Order类为双向关系维护端，负责外键的更新
   @OneToMany(cascade = CascadeType.ALL, targetEntity = CxCategorySub.class ,
-          fetch = FetchType.EAGER, mappedBy = "cxCategory")
+          fetch = FetchType.LAZY, mappedBy = "cxCategory")
   private List<CxCategorySub> cxCategorySubs = new ArrayList<CxCategorySub>();
 
   /**

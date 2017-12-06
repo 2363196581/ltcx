@@ -1,4 +1,4 @@
-package com.connxun.app.common;
+package com.connxun.app.common.search;
 
 import org.springframework.data.jpa.domain.Specification;
 

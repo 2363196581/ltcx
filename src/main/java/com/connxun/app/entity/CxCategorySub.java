@@ -39,7 +39,7 @@ public class CxCategorySub implements Serializable {
 
     @JsonIgnore
     // optional=true：可选，表示此对象可以没有，可以为null；false表示必须存在
-    @ManyToOne(targetEntity = CxCategory.class, fetch = FetchType.LAZY,
+    @ManyToOne(targetEntity = CxCategory.class, fetch = FetchType.EAGER,
             cascade = {CascadeType.REFRESH, CascadeType.MERGE}, optional = true)
     @JoinColumn(name = "parentid")
     private CxCategory cxCategory;

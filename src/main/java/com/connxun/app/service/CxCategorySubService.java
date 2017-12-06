@@ -6,6 +6,7 @@ import com.connxun.app.repositories.ICxCategorySubRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -29,6 +30,7 @@ public class CxCategorySubService   implements BaseService<CxCategorySub, Intege
         return iCxCategorySubRepository.findOne(primaryKey);
     }
 
+    @Transactional
     @Override
     public List<CxCategorySub> findAll() {
         return iCxCategorySubRepository.findAll();

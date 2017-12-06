@@ -1,7 +1,8 @@
 package com.connxun.app.service;
 
 import com.connxun.app.common.BaseService;
-import com.connxun.app.common.PageableTools;
+import com.connxun.app.common.page.PageableTools;
+import com.connxun.app.common.sort.SortDto;
 import com.connxun.app.entity.CxCard;
 import com.connxun.app.repositories.ICxCardRepository;
 import com.connxun.app.searchVO.CommonSearchVO;
@@ -20,34 +21,40 @@ import java.util.List;
 public class CxCardService  implements BaseService<CxCard, Integer> {
 
     @Autowired
-    private ICxCardRepository iCxCardRepository;
+    private ICxCardRepository iCxRepository;
 
     @Override
     public <S extends CxCard> S save(S entity) {
-        return iCxCardRepository.save(entity);
+        return iCxRepository.save(entity);
     }
 
     @Override
     public CxCard findOne(Integer primaryKey) {
-        return iCxCardRepository.findOne(primaryKey);
+        return iCxRepository.findOne(primaryKey);
     }
 
     @Override
     public List<CxCard> findAll() {
-        return iCxCardRepository.findAll();
+        return iCxRepository.findAll();
     }
 
     @Override
     public long count() {
-        return iCxCardRepository.count();
+        return iCxRepository.count();
     }
 
     @Override
     public void delete(Integer primaryKey) {
-        iCxCardRepository.delete(primaryKey);
+        iCxRepository.delete(primaryKey);
     }
 
+
     public Page<CxCard> findAll(CommonSearchVO commonSearchVO) {
-        return iCxCardRepository.findAll(PageableTools.basicPage(commonSearchVO.getPageParams(),commonSearchVO.getLength()));
+        return iCxRepository.findAll(PageableTools.basicPage(commonSearchVO.getPageParams(),commonSearchVO.getLength(), new SortDto("desc", "recommendvalue")));
     }
+
+    public CxCard findCxCardByCardid(String cardId){
+        return iCxRepository.findCxCardByCardid(cardId);
+    }
+
 }

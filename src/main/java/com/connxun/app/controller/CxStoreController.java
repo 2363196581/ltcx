@@ -2,8 +2,8 @@ package com.connxun.app.controller;
 
 import com.connxun.app.common.AppBaseController;
 import com.connxun.app.common.JsonEntity;
-import com.connxun.app.entity.CxCarousel;
-import com.connxun.app.service.CxCarouselService;
+import com.connxun.app.entity.CxStore;
+import com.connxun.app.service.CxStoreService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -18,29 +18,27 @@ import java.util.List;
 
 /**
  * @Author anna
- * @Date 2017-12-01 15:49
- * @Description 轮播图
+ * @Date 2017-12-05 16:47
+ * @Description 店铺
  */
 @RestController
-@RequestMapping(value = "api/banner")
-@Api(tags = {"Banner"},description = "Banner信息", value = "Banner信息")
-public class CxCarouselController extends AppBaseController {
-
+@RequestMapping(value = "api/store")
+@Api(tags = {"Store"},value = "CxStoreController",description = "店铺相关")
+public class CxStoreController extends AppBaseController{
 
     private static Logger logger = LoggerFactory.getLogger("controllerLog");
 
     @Autowired
-    private CxCarouselService cxCarouselService;
-
+    private CxStoreService cxStoreService;
 
     /**
-     * 获取全部BANNER信息
+     * 获取全部名片
      * @return
      */
-    @ApiOperation(value = "获取全部Banner信息", notes = "获取全部Banner信息")
-    @PostMapping(value = "bannerAll")
-    public JsonEntity getList() {
-        List<CxCarousel> cxCategories = cxCarouselService.findAll();
+    @ApiOperation(value = "获取全部店铺", notes = "获取全部店铺")
+    @PostMapping(value = "cardAll")
+    public JsonEntity getCardAll() {
+        List<CxStore> cxCategories = cxStoreService.findAll();
         int size = cxCategories.size();
         if (size > 0) {
             json = listToJson(cxCategories);

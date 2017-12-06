@@ -1,4 +1,4 @@
-package com.connxun.app.common;
+package com.connxun.app.common.page;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

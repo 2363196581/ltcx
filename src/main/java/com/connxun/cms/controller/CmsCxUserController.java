@@ -1,7 +1,7 @@
 package com.connxun.cms.controller;
 
 
-import com.connxun.app.common.BasePage;
+import com.connxun.app.common.page.BasePage;
 import com.connxun.app.entity.CxCard;
 import com.connxun.app.entity.CxUser;
 import com.connxun.app.searchVO.CxUserSearchVO;

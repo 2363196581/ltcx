@@ -1,7 +1,7 @@
 package com.connxun.app.service;
 
 import com.connxun.app.common.BaseService;
-import com.connxun.app.common.PageableTools;
+import com.connxun.app.common.page.PageableTools;
 import com.connxun.app.entity.CxUser;
 import com.connxun.app.repositories.ICxUserRepository;
 import com.connxun.app.searchVO.CommonSearchVO;
@@ -73,18 +73,23 @@ public class CxUserService implements BaseService<CxUser, Integer> {
     public Page<CxUser> getList(CxUserSearchVO cxUserSearchVO){
 
 
-        /*findAll 分页加多条件查询*/
+        /* JPA findAll 分页加单条件查询 (成功)*/
 //        return iCxUserRepository.findAll(SearchTools.buildSpecification(
 //                SearchTools.buildSpeDto("and", new SearchDto("phone", "like", cxUserSearchVO.getPhone()))
 //        ),PageableTools.basicPage(cxUserSearchVO.getPageParams(),cxUserSearchVO.getLength()));
 
+
+        /* JPA findAll 分页加多条件查询 (成功)
+     cxuser0_.id > 177
+     AND (cxuser0_.phone LIKE '%12%'
+     OR cxuser0_.name LIKE '%王%')   */
 //        return iCxUserRepository.findAll(SearchTools.buildSpecification(
-//                SearchTools.buildSpeDto("and", new SearchDto("and", "id", "gt", 2)),
+//                SearchTools.buildSpeDto("and", new SearchDto( "id", "gt", 177)),
 //                SearchTools.buildSpeDto("and", new SearchDto("phone", "like", cxUserSearchVO.getPhone()),
-//                        new SearchDto("or", "userName", "ne", "user9"))
+//                        new SearchDto("or", "name", "like", "王"))
 //                ),PageableTools.basicPage(cxUserSearchVO.getPageParams(),cxUserSearchVO.getLength()));
 
-        /*自定义查询语句 分页加多条件查询*/
+//        /*自定义查询语句 分页加多条件查询 (成功)*/
         return iCxUserRepository.getList(cxUserSearchVO.getPhone(), PageableTools.basicPage(cxUserSearchVO.getPageParams(),cxUserSearchVO.getLength()));
     }
 

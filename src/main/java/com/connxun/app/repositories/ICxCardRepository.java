@@ -13,5 +13,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ICxCardRepository  extends JpaRepository<CxCard,Integer>,JpaSpecificationExecutor<CxCard> {
 
+    /**
+     * 通过cardId获取名片
+     * @param cardId
+     * @return
+     */
+    CxCard findCxCardByCardid(String cardId);
+
 
 }

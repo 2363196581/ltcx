@@ -1,7 +1,7 @@
 package com.connxun.app.service;
 
 import com.connxun.app.common.BaseService;
-import com.connxun.app.common.PageableTools;
+import com.connxun.app.common.page.PageableTools;
 import com.connxun.app.entity.CxCategory;
 import com.connxun.app.repositories.ICxCategoryRepository;
 import com.connxun.app.searchVO.CommonSearchVO;
@@ -36,7 +36,6 @@ public class CxCategoryService  implements BaseService<CxCategory, Integer> {
     public List<CxCategory> findAll() {
         return iCxCategoryRepository.findAll();
     }
-
 
     @Override
     public long count() {

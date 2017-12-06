@@ -1,5 +1,7 @@
-package com.connxun.app.common;
+package com.connxun.app.common.page;
 
+import com.connxun.app.common.sort.SortDto;
+import com.connxun.app.common.sort.SortTools;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
