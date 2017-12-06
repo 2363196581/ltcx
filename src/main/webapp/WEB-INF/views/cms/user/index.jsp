@@ -398,7 +398,7 @@
             //data 这里是固定不变的，id，name，age，sex等为你数据里对应的属性
             columns: [
                 {
-                    data: "id",
+                    data: "userid",
                     render: function (data) {
                         return data || "";
                     }

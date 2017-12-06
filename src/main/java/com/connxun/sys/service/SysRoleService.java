@@ -2,12 +2,12 @@ package com.connxun.sys.service;
 
 
 import com.connxun.common.vo.ComboboxVO;
+import com.connxun.config.config.PubConfig;
 import com.connxun.sys.dao.SysFunctionDao;
 import com.connxun.sys.dao.SysModuleDao;
 import com.connxun.sys.dao.SysRoleDao;
 import com.connxun.sys.model.*;
 import com.connxun.util.cache.EhCacheUtil;
-import com.connxun.util.config.PubConfig;
 import com.connxun.util.session.SessionUtil;
 import com.connxun.util.session.UserSession;
 import com.connxun.util.string.StringUtil;

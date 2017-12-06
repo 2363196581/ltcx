@@ -1,13 +1,13 @@
 package com.connxun.sys.controller;
 
 
+import com.connxun.config.config.PubConfig;
 import com.connxun.sys.model.SysUser;
 import com.connxun.sys.model.SysUserLogin;
 import com.connxun.sys.service.SysRoleService;
 import com.connxun.sys.service.SysUserLoginService;
 import com.connxun.sys.service.SysUserService;
 import com.connxun.sys.vo.SysUserSearchVO;
-import com.connxun.util.config.PubConfig;
 import com.connxun.util.controller.BaseController;
 import com.connxun.util.global.GlobalConst;
 import com.connxun.util.json.JsonUtil;

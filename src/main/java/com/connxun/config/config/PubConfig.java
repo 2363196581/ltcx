@@ -1,4 +1,4 @@
-package com.connxun.util.config;
+package com.connxun.config.config;
 
 import org.springframework.stereotype.Component;
 

@@ -2,8 +2,8 @@ package com.connxun.common.controller;
 
 
 import com.connxun.common.vo.UploadResult;
+import com.connxun.config.config.PubConfig;
 import com.connxun.util.code.SerialNumUtil;
-import com.connxun.util.config.PubConfig;
 import com.connxun.util.date.DateUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

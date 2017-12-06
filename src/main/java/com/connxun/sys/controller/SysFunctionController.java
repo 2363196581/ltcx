@@ -1,11 +1,11 @@
 package com.connxun.sys.controller;
 
 
+import com.connxun.config.config.PubConfig;
 import com.connxun.sys.model.SysFunction;
 import com.connxun.sys.model.SysModule;
 import com.connxun.sys.service.SysFunctionService;
 import com.connxun.sys.service.SysModuleService;
-import com.connxun.util.config.PubConfig;
 import com.connxun.util.controller.BaseController;
 import com.connxun.util.json.JsonUtil;
 import com.connxun.util.web.WebUtil;
