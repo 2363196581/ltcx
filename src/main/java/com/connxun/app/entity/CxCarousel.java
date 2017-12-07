@@ -28,10 +28,8 @@ public class CxCarousel implements Serializable {
   private String picurl;
   private String href;
   private String intervaltime;
-  @JsonIgnore
-  private String state;
+  private String state;   //0 未修改 1修改
   private Long carousevalue;
-  @JsonIgnore
   private String type;
   @JsonIgnore
   private java.sql.Timestamp starttime;

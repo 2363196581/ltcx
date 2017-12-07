@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Description 账号模块 : 登录注册退出
  */
 
-@Controller
+@RestController
 @RequestMapping(value = "api/login")
 @Api(tags = {"Login"},description = "登录注册退出", value = "登录注册退出")
 public class CxLoginController extends AppBaseController {
@@ -34,10 +34,7 @@ public class CxLoginController extends AppBaseController {
     @Autowired
     private CxUserService cxUserService;
 
-    // app登录 PostMapping组合注解
     @PostMapping("login")
-//    @RequestMapping(value = "login", method = RequestMethod.POST)
-    @ResponseBody
     @ApiOperation(value = "前端用户登录")
     public JsonEntity login(HttpServletRequest request, HttpServletResponse response,
                             @ApiParam(required = true, name = "phone", value = "手机号")
@@ -66,8 +63,7 @@ public class CxLoginController extends AppBaseController {
                         } else {
                             user.setToken(RedisUtil.get(user.getId() + ""));
                         }
-                        request.getSession().setAttribute("userSession", user);
-
+//                        request.getSession().setAttribute("userSession", user);
                         return objectToJson(user);
                     } else {
                         return ErrorCode(CodeEnum.LOGINFAIL);
@@ -91,7 +87,6 @@ public class CxLoginController extends AppBaseController {
      */
     @ApiOperation(value = "手机验证码登录接口")
     @PostMapping("loginCaptch")
-    @ResponseBody
     public JsonEntity loginCaptch(
             @ApiParam(required = true, name = "phone", value = "手机号")
             @RequestParam(value = "phone", required = true) String phone,
@@ -126,7 +121,6 @@ public class CxLoginController extends AppBaseController {
     @ApiOperation(value = "qq 微信 新浪微博进行登录接口")
     @PostMapping(value = "qws")
     @ApiResponses(@ApiResponse(code = 110, message = "登录成功，请完善个人信息"))
-    @ResponseBody
     public JsonEntity openLogin(@ApiParam(required = true, name = "uid", value = "第三方登录的唯一标识")
                                 @RequestParam(value = "uid", required = true) String uid,
                                 @ApiParam(required = true, name = "type", value = "第三方登录的方式 0 QQ 1 微信 2 新浪微博")
@@ -189,7 +183,6 @@ public class CxLoginController extends AppBaseController {
      */
     @ApiOperation(value = "选择第三方进行登录完善信息")
     @PostMapping(value = "qwsRegister")
-    @ResponseBody
     public JsonEntity openRegister(@ApiParam(required = true, name = "uid", value = "第三方登录的唯一标识")
                                    @RequestParam(value = "uid", required = true) String uid,
                                    @ApiParam(required = true, name = "type", value = "第三方登录的方式 0 QQ 1 微信 2 新浪微博")
@@ -247,7 +240,6 @@ public class CxLoginController extends AppBaseController {
      */
     @ApiOperation(value = "验证码获取接口", notes = "验证码获取接口")
     @PostMapping(value = "getCaptch")
-    @ResponseBody
     public JsonEntity recaptch(@ApiParam(required = true, name = "phone", value = "手机号")
                                @RequestParam(value = "phone", required = true) String phone,
                                @ApiParam(required = true, name = "state", value = "1 注册验证码   2 修改密码验证码  3 直接登录")
@@ -294,7 +286,6 @@ public class CxLoginController extends AppBaseController {
     //注册
     @ApiOperation(value = "用户注册接口")
     @PostMapping(value = "reg")
-    @ResponseBody
     public JsonEntity reg(HttpServletRequest request, HttpServletResponse response,
                           @ApiParam(required = true, name = "phone", value = "手机号")
                           @RequestParam(value = "phone", required = true) String phone,
@@ -347,7 +338,6 @@ public class CxLoginController extends AppBaseController {
      */
     @ApiOperation(value = "用户修改密码接口",notes = "用户修改密码接口")
     @PostMapping(value = "updatePwd")
-    @ResponseBody
     public JsonEntity updatePwd(HttpServletRequest request, HttpServletResponse response,
                                 @ApiParam(required = true, name = "phone", value = "手机号")
                                 @RequestParam(value = "phone", required = true) String phone,
@@ -387,7 +377,6 @@ public class CxLoginController extends AppBaseController {
      * @return
      */
     @ApiOperation(value = "用户注销登出接口", notes = "用户注销登出接口")
-    @ResponseBody
     @PostMapping(value = "logout")
     public JsonEntity logout(@ApiParam(required = true, name = "userId", value = "用户ID")
                              @RequestParam(value = "userId", required = true) String userId) {
