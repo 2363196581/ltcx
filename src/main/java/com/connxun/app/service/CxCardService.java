@@ -50,7 +50,7 @@ public class CxCardService  implements BaseService<CxCard, Integer> {
 
 
     public Page<CxCard> findAll(CommonSearchVO commonSearchVO) {
-        return iCxRepository.findAll(PageableTools.basicPage(commonSearchVO.getPageParams(),commonSearchVO.getLength(), new SortDto("desc", "recommendvalue")));
+        return iCxRepository.findAll(PageableTools.basicPage(commonSearchVO.getPage(),commonSearchVO.getLength(), new SortDto("desc", "recommendvalue")));
     }
 
     public CxCard findCxCardByCardid(String cardId){

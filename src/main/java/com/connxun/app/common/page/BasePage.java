@@ -1,5 +1,6 @@
 package com.connxun.app.common.page;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -23,6 +24,7 @@ public class BasePage implements Page {
     private int recordsFiltered; //过滤后的记录数（如果有接收到前台的过滤条件，则返回的是过滤后的记录数）
     private Object data; //结果集
 
+    @JsonIgnore
     private Page page;
 
     public BasePage(Page page) {

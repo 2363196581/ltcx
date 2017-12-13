@@ -51,6 +51,7 @@ public class CmsCxUserController extends BaseController {
 //        BasePage page =new BasePage(CxUserService.findAll(searchVO));
 //        CxUser cxUse1r= cxUserService.findOne(1);
         BasePage page =new BasePage(cxUserService.getList(searchVO));
+        Page page2 =cxUserService.getList(searchVO);
 //        DataTablesResult result = new DataTablesResult();
 //        List<JzUser> list = CxUserService.findAll(searchVO);
 //        result.setDraw(searchVO.getDraw());//每个字段在实体中都有注释

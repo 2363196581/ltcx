@@ -2,6 +2,7 @@ package com.connxun.app.controller;
 
 import com.connxun.app.common.AppBaseController;
 import com.connxun.app.common.JsonEntity;
+import com.connxun.app.common.page.BasePage;
 import com.connxun.app.entity.CxCard;
 import com.connxun.app.searchVO.CommonSearchVO;
 import com.connxun.app.service.CxCardService;
@@ -58,10 +59,11 @@ public class CxCardController extends AppBaseController {
     @ApiOperation(value = "根据推荐值获取全部名片", notes = "根据推荐值获取全部名片")
     @PostMapping(value = "getCardAllOrderRecommendValue")
     public JsonEntity getCardAllOrderRecommendValue(CommonSearchVO commonSearchVO) {
+        BasePage page2 =new BasePage(cxCardService.findAll(commonSearchVO));
         Page<CxCard> page = cxCardService.findAll(commonSearchVO);
 
         if (page.getTotalElements() > 0) {
-            json=listToJson(page.getContent());
+            json=objectToJson(page);
         } else {
             json = objectToJson(new ArrayList<>());
         }
